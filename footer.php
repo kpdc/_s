@@ -6,21 +6,52 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package _s
+ * @package Digitate
  */
 
 ?>
 
-	</div><!-- #content -->
+        </div><!-- .site-content -->
+    </div><!-- .container -->
 
-	<footer id="colophon" class="site-footer" role="contentinfo">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', '_s' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', '_s' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', '_s' ), '_s', '<a href="https://automattic.com/" rel="designer">Automattic</a>' ); ?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
-</div><!-- #page -->
+    <footer class="site-footer">
+        <div class="wrap">
+            <img src="<?php bloginfo('template_directory') ?>/images/digitate.png" alt="digitate" class="foot-brand">
+            <div class="contact-group">
+                <?php $foot_content = new WP_Query(array('pagename' => 'footer'));
+                while($foot_content->have_posts()) : $foot_content->the_post();
+                the_content();
+                endwhile; wp_reset_postdata();
+                ?>
+            </div>
+            <nav class="privacy">
+                <?php
+                    wp_nav_menu(array(
+                        'theme_location' => 'footnav',
+                        'container' => '',
+                    ));
+                ?>
+            </nav>
+        </div><!-- .wrap -->
+        <div class="sitemap">
+            <nav class="resource-nav">
+                <?php
+                    wp_nav_menu(array(
+                        'theme_location' => 'footsitemap',
+                        'container' => '',
+                    ));
+                ?>
+            </nav>
+        </div>
+    </footer><!-- .site-footer -->
+    <div class="demo">
+        <p class="demo-button">Request a Demo</p>
+        <div class="eform">
+            <div class="close">x</div>
+            <?php echo do_shortcode( '[contact-form-7 id="47" title="Request a Demo"]' ); ?>
+        </div>
+    </div>
+</div><!-- .pageWrap -->
 
 <?php wp_footer(); ?>
 

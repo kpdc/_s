@@ -1,0 +1,1 @@
+jQuery(document).ready(function($){$(".intro-sub img").each(function(){$(this).nextUntil("img").andSelf().wrapAll('<div class="sub"></div>')}),$(".sub h4").each(function(){$(this).nextUntil("h4").andSelf().wrapAll('<div class="inner-sub"></div>')})});
